@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Bayram için PUBG Bağımlılığı ile Mücadele Rehberi</title>
+    <style>
+        :root {
+            --primary: #ff4757;
+            --secondary: #2f3542;
+            --accent: #1e90ff;
+            --light: #f1f2f6;
+            --dark: #2f3542;
+            --success: #2ed573;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--secondary), var(--dark));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiPjxkZWZzPjxwYXR0ZXJuIGlkPSJwYXR0ZXJuIiB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHBhdHRlcm5Vbml0cz0idXNlclNwYWNlT25Vc2UiIHBhdHRlcm5UcmFuc2Zvcm09InJvdGF0ZSg0NSkiPjxyZWN0IHdpZHRoPSIyMCIgaGVpZ2h0PSIyMCIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNwYXR0ZXJuKSIvPjwvc3ZnPg==');
+            opacity: 0.4;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .stats-bar {
+            display: flex;
+            justify-content: space-around;
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem auto;
+            max-width: 900px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .stat-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            opacity: 0.8;
+        }
+        
+        section {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2rem;
+            color: var(--secondary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .card-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .card-content {
+            padding: 1.5rem;
+        }
+        
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .card-text {
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #1a7fd8;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+        
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+        
+        .testimonial {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.1);
+            font-family: Georgia, serif;
+        }
+        
+        .testimonial-text {
+            font-size: 1.1rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            font-weight: 700;
+        }
+        
+        .progress-container {
+            background-color: #e0e0e0;
+            border-radius: 10px;
+            height: 20px;
+            margin: 2rem 0;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            width: 0;
+            transition: width 1s ease;
+            border-radius: 10px;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+        
+        .step-number {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            margin-right: 1.5rem;
+        }
+        
+        .step-content {
+            flex-grow: 1;
+        }
+        
+        .step-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary);
+        }
+        
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--accent), #5352ed);
+            color: white;
+            padding: 4rem 0;
+            border-radius: 10px;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-text {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-cta {
+            background-color: white;
+            color: var(--accent);
+            font-size: 1.1rem;
+            padding: 1rem 2rem;
+        }
+        
+        .btn-cta:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+        }
+        
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-link {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+        
+        .footer-link:hover {
+            opacity: 1;
+        }
+        
+        .copyright {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-bar {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate {
+            animation: fadeIn 0.8s ease forwards;
+        }
+        
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content container">
+            <h1 class="animate">Bayram için PUBG Bağımlılığından Kurtulma Rehberi</h1>
+            <p class="subtitle animate delay-1">Bayram, bu site senin için. Sağlıklı bir dijital yaşam dengesi kurmana yardımcı olmak için hazırlandı.</p>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="stats-bar animate delay-2">
+            <div class="stat-item">
+                <div class="stat-number">97%</div>
+                <div class="stat-label">Oyun bağımlılarının sosyal ilişkilerde zorlanma yüzdesi</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">9.4</div>
+                <div class="stat-label">Ortalama günlük oyun saati (bağımlılarda)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">76</div>
+                <div class="stat-label">Oyun bıraktıktan sonraki günlerde görülen iyileşme</div>
+            </div>
+        </div>
+    </div>
+
+    <section id="problems">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>PUBG Bağımlılığının Zararları</h2>
+            </div>
+            <div class="card-grid">
+                <div class="card animate delay-1">
+                    <div class="card-img" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iI2ZmNDc1NyIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0Ij5Tb3N5YWwgSXpvbGFzeW9uPC90ZXh0Pjwvc3ZnPg==')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Sosyal İzolasyon</h3>
+                        <p class="card-text">Aşırı oyun oynamak gerçek dünyadaki ilişkilerin zayıflamasına ve sosyal becerilerin körelmesine neden olur.</p>
+                        <a href="#" class="btn btn-outline">Daha Fazla Bilgi</a>
+                    </div>
+                </div>
+                <div class="card animate delay-2">
+                    <div class="card-img" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzFlOTBmZiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0Ij5Ba2FkZW1payBEw7zFn8O8xZ88L3RleHQ+PC9zdmc+')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Akademik Düşüş</h3>
+                        <p class="card-text">Oyun bağımlılığı ders çalışma süresini ve konsantrasyonu azaltarak akademik başarıyı olumsuz etkiler.</p>
+                        <a href="#" class="btn btn-outline">Daha Fazla Bilgi</a>
+                    </div>
+                </div>
+                <div class="card animate delay-3">
+                    <div class="card-img" style="background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjIwMCI+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0iIzJmMzU0MiIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0Ij5VeWt1IFNvcnVubGFyxLE8L3RleHQ+PC9zdmc+')"></div>
+                    <div class="card-content">
+                        <h3 class="card-title">Uyku Sorunları</h3>
+                        <p class="card-text">Geç saatlere kadar oyun oynamak uyku düzenini bozar ve kalitesiz uykuya yol açar.</p>
+                        <a href="#" class="btn btn-outline">Daha Fazla Bilgi</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonial" style="background-color: #f8f9fa;">
+        <div class="container">
+            <div class="testimonial animate">
+                <p class="testimonial-text">"Günde 8 saat PUBG oynuyordum. Notlarım düşmüş, arkadaşlarımla görüşemez olmuştum. Oyunu bıraktıktan 2 hafta sonra hayatımın ne kadar değiştiğini fark ettim. Şimdi daha mutluyum ve üretkenim."</p>
+                <p class="testimonial-author">- Mehmet K., 21 yaşında, eski PUBG bağımlısı</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>PUBG Bağımlılığından Kurtulma Yolları</h2>
+            </div>
+            
+            <div class="progress-container animate delay-1">
+                <div class="progress-bar" id="progressBar" style="width: 0%"></div>
+            </div>
+            
+            <div class="step animate delay-1">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3 class="step-title">Farkındalık Kazan</h3>
+                    <p>Oyun oynadığın süreyi bir hafta boyunca kaydet. Ne kadar zaman harcadığını görmek şok edici olabilir.</p>
+                </div>
+            </div>
+            
+            <div class="step animate delay-2">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3 class="step-title">Hedefler Belirle</h3>
+                    <p>Günlük oyun süreni kademeli olarak azaltmak için gerçekçi hedefler koy (örneğin günde 1 saat azaltma).</p>
+                </div>
+            </div>
+            
+            <div class="step animate delay-3">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3 class="step-title">Alternatifler Bul</h3>
+                    <p>Oyun oynadığın zamanlarda yapabileceğin yeni hobiler edin (spor, müzik, okuma gibi).</p>
+                </div>
+            </div>
+            
+            <div class="step animate">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3 class="step-title">Sosyalleş</h3>
+                    <p>Arkadaşlarınla yüz yüze görüşmeye zaman ayır. Sosyal ilişkiler gerçek hayattaki mutluluğun anahtarıdır.</p>
+                </div>
+            </div>
+            
+            <div class="step animate delay-1">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <h3 class="step-title">Teknoloji Diyeti Yap</h3>
+                    <p>Belirli saatlerde telefonunu ve bilgisayarını kapat. Bu, beyninin dinlenmesine yardımcı olacaktır.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="cta">
+        <div class="container">
+            <div class="cta-section animate">
+                <h2 class="cta-title">PUBG'siz Bir Hayat Mümkün!</h2>
+                <p class="cta-text">Bayram, sen bu bağımlılığı yenebilecek güce sahipsin. Bugün ilk adımı at ve hayatının kontrolünü geri al.</p>
+                <button class="btn btn-cta" id="commitBtn">BAĞIMLILIKTAN KURTULMA SÖZÜ VERİYORUM</button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links animate">
+                <a href="#" class="footer-link">Hakkında</a>
+                <a href="#" class="footer-link">Kaynaklar</a>
+                <a href="#" class="footer-link">İletişim</a>
+                <a href="#" class="footer-link">Gizlilik Politikası</a>
+            </div>
+            <p class="copyright animate delay-1">© 2023 Arjin Akar Sağlıklı Dijital Yaşam Derneği. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Animasyonları tetikleme
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(element => {
+                element.style.opacity = 0;
+                observer.observe(element);
+            });
+            
+            // İlerleme çubuğu animasyonu
+            setTimeout(() => {
+                document.getElementById('progressBar').style.width = '100%';
+            }, 500);
+            
+            // Söz verme butonu
+            document.getElementById('commitBtn').addEventListener('click', function() {
+                alert('Tebrikler Utku! Bu kararın hayatında büyük bir dönüm noktası olacak. Seninle gurur duyuyoruz!');
+                this.textContent = 'SÖZÜNÜ TUTMAK İÇİN HAZIRIM';
+                this.style.backgroundColor = 'var(--success)';
+            });
+        });
+    </script>
+</body>
+</html>
