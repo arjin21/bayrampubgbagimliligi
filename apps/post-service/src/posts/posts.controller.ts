@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Param, Post, UseInterceptors, UploadedFile, Req } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, UseInterceptors, UploadedFile, Req, BadRequestException } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { extname } from 'path';
@@ -22,6 +22,15 @@ export class PostsController {
           cb(null, unique);
         },
       }),
+      limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
+      fileFilter: (_req: Express.Request, file: Express.Multer.File, cb) => {
+        const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/gif', 'video/mp4'];
+        if (allowed.includes(file.mimetype)) {
+          cb(null, true);
+        } else {
+          cb(new BadRequestException('Unsupported file type'), false);
+        }
+      },
     }),
   )
   create(
@@ -29,6 +38,9 @@ export class PostsController {
     @Body() dto: CreatePostDto,
     @Req() req: any,
   ) {
+    if (!file) {
+      throw new BadRequestException('File is required');
+    }
     const authorId = (req.user?.userId as string) || 'demo-author-id';
     const mediaUrl = `/uploads/${file.filename}`;
     return this.postsService.createPost(authorId, dto.caption, mediaUrl);
