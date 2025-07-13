@@ -3,15 +3,23 @@
   "private": true,
   "version": "0.1.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "scripts": {
     "dev": "turbo run dev --parallel",
     "build": "turbo run build",
     "lint": "turbo run lint",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "prisma:generate": "prisma generate",
+    "db:migrate": "prisma migrate dev --name init --preview-feature"
   },
   "devDependencies": {
-    "turbo": "^1.10.0"
+    "turbo": "^1.10.0",
+    "prisma": "^5.7.1",
+    "@types/node": "^20.6.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.7.1"
   }
 }
