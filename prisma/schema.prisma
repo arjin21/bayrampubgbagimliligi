@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
@@ -18,6 +18,8 @@ model User {
   isPrivate    Boolean  @default(false)
   followers    Follow[] @relation("followers")
   following    Follow[] @relation("following")
+  requestedFollowRequests FollowRequest[] @relation("requesterFollowRequests")
+  receivedFollowRequests  FollowRequest[] @relation("targetFollowRequests")
   posts        Post[]
   comments     Comment[]
   likes        Like[]
@@ -37,18 +39,12 @@ model Follow {
 
 model FollowRequest {
   id          String   @id @default(uuid())
-  requester   User     @relation(fields: [requesterId], references: [id])
+  requester   User     @relation("requesterFollowRequests", fields: [requesterId], references: [id])
   requesterId String
-  target      User     @relation(fields: [targetId], references: [id])
+  target      User     @relation("targetFollowRequests", fields: [targetId], references: [id])
   targetId    String
-  status      FollowRequestStatus @default(PENDING)
+  status      String @default("PENDING")
   createdAt   DateTime @default(now())
-}
-
-enum FollowRequestStatus {
-  PENDING
-  ACCEPTED
-  REJECTED
 }
 
 model Post {
